@@ -18,6 +18,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var textTop: UITextField!
     @IBOutlet weak var textBottom: UITextField!
     
+    @IBOutlet weak var textTopTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textBottomBottomConstraint: NSLayoutConstraint!
+    
     var memeTextFieldDelegate: MemeTextFieldDelegate?
     var meme: Meme?
     
@@ -31,8 +34,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        subscribeToKeyboardNotification(withName: .UIKeyboardDidShow, withSelector: #selector(keyboardWillShow(_:)))
-        subscribeToKeyboardNotification(withName: .UIKeyboardDidHide, withSelector: #selector(keyboardWillHide(_:)))
+        subscribeToNotification(withName: .UIKeyboardDidShow, withSelector: #selector(keyboardWillShow(_:)))
+        subscribeToNotification(withName: .UIKeyboardDidHide, withSelector: #selector(keyboardWillHide(_:)))
     }
     
     override func viewDidLoad() {
@@ -44,11 +47,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         setShareButtonEnabledState()
     }
     
+    override func viewDidLayoutSubviews() {
+        setTextFieldConstraints()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        unsubscribeToKeyboardNotification(withName: .UIKeyboardDidShow)
-        unsubscribeToKeyboardNotification(withName: .UIKeyboardDidHide)
+        unsubscribeFromNotification(withName: .UIKeyboardDidShow)
+        unsubscribeFromNotification(withName: .UIKeyboardDidHide)
     }
     
     func prepareTextFields() {
@@ -76,8 +83,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             present(shareController, animated: true, completion: nil)
         }
     }
-    
-    
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         imageView.image = nil
@@ -111,15 +116,51 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         setShareButtonEnabledState()
     }
     
+    func setTextFieldConstraints() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+            let rect = self.calculateRectOfImageInImageView(imageView: self.imageView)
+            
+            if rect.origin.y != 0.0 {
+                self.textTopTopConstraint.constant = rect.origin.y - 16
+                self.textBottomBottomConstraint.constant = -rect.origin.y + 16
+            }
+        })
+    }
+    
+    //helper method: credits to https://stackoverflow.com/questions/26348736/uiimageview-get-the-position-of-the-showing-image
+    func calculateRectOfImageInImageView(imageView: UIImageView) -> CGRect {
+        let imageViewSize = imageView.frame.size
+        let imgSize = imageView.image?.size
+        
+        guard let imageSize = imgSize, imgSize != nil else {
+            return CGRect.zero
+        }
+        
+        let scaleWidth = imageViewSize.width / imageSize.width
+        let scaleHeight = imageViewSize.height / imageSize.height
+        let aspect = fmin(scaleWidth, scaleHeight)
+        
+        var imageRect = CGRect(x: 0, y: 0, width: imageSize.width * aspect, height: imageSize.height * aspect)
+        // Center image
+        imageRect.origin.x = (imageViewSize.width - imageRect.size.width) / 2
+        imageRect.origin.y = (imageViewSize.height - imageRect.size.height) / 2
+        
+        // Add imageView offset
+        imageRect.origin.x += imageView.frame.origin.x
+        imageRect.origin.y += imageView.frame.origin.y
+        
+        return imageRect
+    }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func subscribeToKeyboardNotification(withName notificationName: NSNotification.Name, withSelector notificationSelector: Selector) {
+    func subscribeToNotification(withName notificationName: NSNotification.Name, withSelector notificationSelector: Selector) {
         NotificationCenter.default.addObserver(self, selector: notificationSelector, name: notificationName, object: nil)
     }
     
-    func unsubscribeToKeyboardNotification(withName notificationName: NSNotification.Name) {
+    func unsubscribeFromNotification(withName notificationName: NSNotification.Name) {
         NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
     }
     
@@ -142,6 +183,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if let originalImage = imageView?.image {
             self.meme = Meme(topText: textTop!.text!, bottomText: textBottom!.text!, originalImage: originalImage, memeImage: generateMemedImage())
             dismiss(animated: true, completion: nil)
+            
+            UIImageWriteToSavedPhotosAlbum(meme!.memeImage!, nil, nil, nil)
         }
     }
     

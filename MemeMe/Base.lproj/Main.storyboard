@@ -36,7 +36,7 @@
                                             </barButtonItem>
                                         </items>
                                     </toolbar>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="fqV-BL-ebP" userLabel="MemeImageView">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="fqV-BL-ebP" userLabel="MemeImageView">
                                         <rect key="frame" x="0.0" y="44" width="768" height="916"/>
                                     </imageView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" horizontalHuggingPriority="150" verticalHuggingPriority="150" translatesAutoresizingMaskIntoConstraints="NO" id="Lfp-Ci-Lgn" userLabel="BottomToolbar">
@@ -69,7 +69,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ae-3o-7e0">
-                                <rect key="frame" x="367.5" y="64" width="32" height="17"/>
+                                <rect key="frame" x="367.5" y="80" width="32" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -82,7 +82,7 @@
                             <constraint firstItem="6Gp-Ez-22z" firstAttribute="bottom" secondItem="fqV-BL-ebP" secondAttribute="bottom" constant="-16" id="OnS-8M-l2X"/>
                             <constraint firstItem="1Ae-3o-7e0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VE9-NR-lPU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1en-af-pGl" secondAttribute="trailing" id="YQU-Sf-yCj"/>
-                            <constraint firstItem="1Ae-3o-7e0" firstAttribute="top" secondItem="fqV-BL-ebP" secondAttribute="top" id="gHM-lN-3VQ"/>
+                            <constraint firstItem="1Ae-3o-7e0" firstAttribute="top" secondItem="fqV-BL-ebP" secondAttribute="top" constant="16" id="gHM-lN-3VQ"/>
                             <constraint firstAttribute="bottom" secondItem="1en-af-pGl" secondAttribute="bottom" id="sRX-Ym-Mxm"/>
                             <constraint firstItem="1en-af-pGl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tSH-5W-3Ek"/>
                         </constraints>
@@ -94,7 +94,9 @@
                         <outlet property="imageView" destination="fqV-BL-ebP" id="5Cp-N0-UR7"/>
                         <outlet property="shareButton" destination="WYY-gn-BSk" id="9V3-8B-pyO"/>
                         <outlet property="textBottom" destination="6Gp-Ez-22z" id="pNd-ku-NRQ"/>
+                        <outlet property="textBottomBottomConstraint" destination="OnS-8M-l2X" id="7Ty-kU-L0V"/>
                         <outlet property="textTop" destination="1Ae-3o-7e0" id="CcS-aC-XQX"/>
+                        <outlet property="textTopTopConstraint" destination="gHM-lN-3VQ" id="l3f-kh-278"/>
                         <outlet property="topBar" destination="gi1-qw-UmW" id="seH-V3-sc5"/>
                     </connections>
                 </viewController>
