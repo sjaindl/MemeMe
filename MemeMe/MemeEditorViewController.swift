@@ -24,13 +24,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var memeTextFieldDelegate: MemeTextFieldDelegate?
     var meme: Meme?
     
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage?
-        var memeImage: UIImage?
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -48,6 +41,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        //forces the imageView to update its frame, as subview layouting may not be finished at this point
+        self.imageView.superview!.setNeedsLayout()
+        self.imageView.superview!.layoutIfNeeded()
+        
         setTextFieldConstraints()
     }
     
@@ -68,6 +67,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.textAlignment = .center
         textField.defaultTextAttributes = MemeText.textFieldDefaultAttributes
         textField.delegate = memeTextFieldDelegate
+        textField.adjustsFontSizeToFitWidth = true
+        textField.minimumFontSize = 1
     }
 
     @IBAction func share(_ sender: UIBarButtonItem) {
@@ -76,7 +77,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if let memedImage = memedImage {
             let shareController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
             shareController.completionWithItemsHandler = {(activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-               self.saveMeme()
+                if completed {
+                    self.saveMeme()
+                }
             }
             
             shareController.popoverPresentationController?.sourceView = self.view
@@ -117,14 +120,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func setTextFieldConstraints() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-            let rect = self.calculateRectOfImageInImageView(imageView: self.imageView)
-            
-            if rect.origin.y != 0.0 {
-                self.textTopTopConstraint.constant = rect.origin.y - 16
-                self.textBottomBottomConstraint.constant = -rect.origin.y + 16
-            }
-        })
+        let rect = self.calculateRectOfImageInImageView(imageView: self.imageView)
+        
+        if rect.origin.y != 0.0 {
+            self.textTopTopConstraint.constant = rect.origin.y - 16
+            self.textBottomBottomConstraint.constant = -rect.origin.y + 16
+        }
     }
     
     //helper method: credits to https://stackoverflow.com/questions/26348736/uiimageview-get-the-position-of-the-showing-image
@@ -165,7 +166,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @objc func keyboardWillShow(_ notification : Notification) {
-        if memeTextFieldDelegate!.currentTextField?.tag == MemeText.bottomTag {
+        if textBottom.isFirstResponder {
             view.frame.origin.y = -getKeyboardHeigth(notification)
         }
     }

@@ -19,7 +19,7 @@ struct MemeText {
     static let textFieldDefaultAttributes: [String: Any] = [
         NSAttributedStringKey.font.rawValue : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSAttributedStringKey.foregroundColor.rawValue : UIColor.white,
-        NSAttributedStringKey.strokeWidth.rawValue : "5",
+        NSAttributedStringKey.strokeWidth.rawValue : "-1",
         NSAttributedStringKey.strokeColor.rawValue : UIColor.black
     ]
 }

@@ -69,7 +69,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ae-3o-7e0">
-                                <rect key="frame" x="367.5" y="80" width="32" height="17"/>
+                                <rect key="frame" x="368" y="80" width="32" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -77,11 +77,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Ae-3o-7e0" secondAttribute="trailing" constant="8" id="30H-I0-T9i"/>
                             <constraint firstItem="6Gp-Ez-22z" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6fa-Fy-ceP"/>
                             <constraint firstItem="1en-af-pGl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8kU-wP-rn8"/>
+                            <constraint firstItem="1Ae-3o-7e0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="8lG-pN-v4b"/>
+                            <constraint firstItem="6Gp-Ez-22z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="DSC-0s-mie"/>
                             <constraint firstItem="6Gp-Ez-22z" firstAttribute="bottom" secondItem="fqV-BL-ebP" secondAttribute="bottom" constant="-16" id="OnS-8M-l2X"/>
                             <constraint firstItem="1Ae-3o-7e0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VE9-NR-lPU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1en-af-pGl" secondAttribute="trailing" id="YQU-Sf-yCj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6Gp-Ez-22z" secondAttribute="trailing" constant="8" id="Z0P-6I-od2"/>
                             <constraint firstItem="1Ae-3o-7e0" firstAttribute="top" secondItem="fqV-BL-ebP" secondAttribute="top" constant="16" id="gHM-lN-3VQ"/>
                             <constraint firstAttribute="bottom" secondItem="1en-af-pGl" secondAttribute="bottom" id="sRX-Ym-Mxm"/>
                             <constraint firstItem="1en-af-pGl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tSH-5W-3Ek"/>
