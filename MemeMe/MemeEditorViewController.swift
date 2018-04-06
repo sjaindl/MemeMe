@@ -64,8 +64,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func prepareTextField(_ textField: UITextField, withText text: String) {
         textField.text = text
-        textField.textAlignment = .center
         textField.defaultTextAttributes = MemeText.textFieldDefaultAttributes
+        textField.textAlignment = .center
         textField.delegate = memeTextFieldDelegate
         textField.adjustsFontSizeToFitWidth = true
         textField.minimumFontSize = 1
