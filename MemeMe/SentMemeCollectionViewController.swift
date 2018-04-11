@@ -38,13 +38,23 @@ class SentMemeCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: MemeIds.MEME_DETAIL_SEGUE_ID, sender: indexPath.row)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         segue.destination.hidesBottomBarWhenPushed = true
+        
+        if segue.identifier == MemeIds.MEME_DETAIL_SEGUE_ID {
+            let controller = segue.destination as! MemeDetailViewController
+            controller.memeIndex = sender as? Int
+        }
     }
     
     override func viewDidLayoutSubviews() {
-      super.viewDidLayoutSubviews()
-      self.setupFlowLayout()
+        super.viewDidLayoutSubviews()
+    
+        self.setupFlowLayout()
     }
     
     func setupFlowLayout() {

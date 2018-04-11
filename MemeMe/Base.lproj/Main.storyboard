@@ -107,6 +107,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="LAt-40-8hX" kind="show" identifier="showDetail" id="9CG-pI-rT0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pk7-G6-hCi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,6 +165,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="flowLayout" destination="tay-Br-W09" id="zwO-7s-U6o"/>
+                        <segue destination="LAt-40-8hX" kind="show" identifier="showDetail" id="29w-Vk-mYK"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESf-Ca-d4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -267,6 +271,34 @@
             </objects>
             <point key="canvasLocation" x="2032" y="-360"/>
         </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="XE9-oN-MQC">
+            <objects>
+                <viewController id="LAt-40-8hX" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j5b-pK-hHQ">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grid" translatesAutoresizingMaskIntoConstraints="NO" id="bUE-Ye-aW7" userLabel="detailImage">
+                                <rect key="frame" x="368" y="503.5" width="32" height="32"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bUE-Ye-aW7" firstAttribute="centerX" secondItem="gB5-I4-vev" secondAttribute="centerX" id="HIR-vs-vSp"/>
+                            <constraint firstItem="bUE-Ye-aW7" firstAttribute="centerY" secondItem="gB5-I4-vev" secondAttribute="centerY" id="ZNW-CD-elF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gB5-I4-vev"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CTt-5H-eJI"/>
+                    <connections>
+                        <outlet property="detailImage" destination="bUE-Ye-aW7" id="XDR-Ab-gBg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bca-06-KSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3266.40625" y="445.89843749999994"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hnw-bU-RdF">
             <objects>
@@ -316,6 +348,7 @@
         <image name="table" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="29w-Vk-mYK"/>
         <segue reference="dAq-b7-JbT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -27,4 +27,5 @@ struct MemeText {
 struct MemeIds {
     static let MEME_TABLE_CELL_ID: String = "SentMemeTableCell"
     static let MEME_COLLECTION_VIEW_CELL_ID: String = "SentMemeCollectionViewCell"
+    static let MEME_DETAIL_SEGUE_ID: String = "showDetail"
 }

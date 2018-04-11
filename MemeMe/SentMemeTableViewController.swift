@@ -10,6 +10,7 @@ import UIKit
 
 class SentMemeTableViewController: UITableViewController {
     
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
@@ -32,10 +33,15 @@ class SentMemeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("todo")
+        self.performSegue(withIdentifier: MemeIds.MEME_DETAIL_SEGUE_ID, sender: indexPath.row)
     }
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         segue.destination.hidesBottomBarWhenPushed = true
+        
+        if segue.identifier == MemeIds.MEME_DETAIL_SEGUE_ID {
+            let controller = segue.destination as! MemeDetailViewController
+            controller.memeIndex = sender as? Int
+        }
     }
 }
