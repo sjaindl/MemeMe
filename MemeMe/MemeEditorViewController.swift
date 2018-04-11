@@ -22,6 +22,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var textBottomBottomConstraint: NSLayoutConstraint!
     
     var memeTextFieldDelegate: MemeTextFieldDelegate?
+    var setConstraints = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,6 +79,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             shareController.completionWithItemsHandler = {(activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
                 if completed {
                     self.saveMeme()
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
             
@@ -121,6 +123,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func setTextFieldConstraints() {
+        if !setConstraints {
+            return
+        }
+        
         let rect = self.calculateRectOfImageInImageView(imageView: self.imageView)
         
         if rect.origin.y != 0.0 {
@@ -193,6 +199,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func generateMemedImage() -> UIImage? {
+        self.setConstraints = false
         //Hide toolbar/navbar for mimed image
         hideBars(true)
         
@@ -201,8 +208,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        //Restore toolbar/navbar
-        hideBars(false)
+        self.setConstraints = true
+        self.hideBars(false)
         
         return memedImage
     }

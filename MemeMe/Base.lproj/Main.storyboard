@@ -86,7 +86,6 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.28183310512053106" blue="0.24341594831907765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SentMemeTableCell"/>
                                 <connections>
                                     <outlet property="bottomTextLabel" destination="JNd-Lj-R7P" id="f01-vJ-N22"/>
@@ -285,7 +284,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="bUE-Ye-aW7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gB5-I4-vev" secondAttribute="leading" constant="8" id="45e-0m-Agi"/>
+                            <constraint firstItem="bUE-Ye-aW7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gB5-I4-vev" secondAttribute="top" constant="8" id="4JI-1b-nKD"/>
+                            <constraint firstItem="gB5-I4-vev" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bUE-Ye-aW7" secondAttribute="trailing" constant="8" id="AgA-5H-KW0"/>
                             <constraint firstItem="bUE-Ye-aW7" firstAttribute="centerX" secondItem="gB5-I4-vev" secondAttribute="centerX" id="HIR-vs-vSp"/>
+                            <constraint firstItem="gB5-I4-vev" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bUE-Ye-aW7" secondAttribute="bottom" constant="8" id="V3i-CM-ocd"/>
                             <constraint firstItem="bUE-Ye-aW7" firstAttribute="centerY" secondItem="gB5-I4-vev" secondAttribute="centerY" id="ZNW-CD-elF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gB5-I4-vev"/>
@@ -348,7 +351,7 @@
         <image name="table" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="29w-Vk-mYK"/>
-        <segue reference="dAq-b7-JbT"/>
+        <segue reference="9CG-pI-rT0"/>
+        <segue reference="pGV-wp-xcy"/>
     </inferredMetricsTieBreakers>
 </document>
