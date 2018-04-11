@@ -23,3 +23,8 @@ struct MemeText {
         NSAttributedStringKey.strokeColor.rawValue : UIColor.black
     ]
 }
+
+struct MemeIds {
+    static let MEME_TABLE_CELL_ID: String = "SentMemeTableCell"
+    static let MEME_COLLECTION_VIEW_CELL_ID: String = "SentMemeCollectionViewCell"
+}

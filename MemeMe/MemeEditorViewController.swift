@@ -22,7 +22,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var textBottomBottomConstraint: NSLayoutConstraint!
     
     var memeTextFieldDelegate: MemeTextFieldDelegate?
-    var meme: Meme?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -92,6 +91,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textTop.text = MemeText.topText
         textBottom.text = MemeText.bottomText
         setShareButtonEnabledState()
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func takePhotoFromCamera(_ sender: UIBarButtonItem) {
@@ -182,10 +183,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func saveMeme() {
         if let originalImage = imageView?.image {
-            self.meme = Meme(topText: textTop!.text!, bottomText: textBottom!.text!, originalImage: originalImage, memeImage: generateMemedImage())
-            dismiss(animated: true, completion: nil)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let meme = Meme(topText: textTop!.text!, bottomText: textBottom!.text!, originalImage: originalImage, memeImage: generateMemedImage())
+            appDelegate.memes.append(meme)
             
-            UIImageWriteToSavedPhotosAlbum(meme!.memeImage!, nil, nil, nil)
+            dismiss(animated: true, completion: nil)
+            UIImageWriteToSavedPhotosAlbum(meme.memeImage!, nil, nil, nil)
         }
     }
     
