@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+final class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var topBar: UIToolbar!
     @IBOutlet weak var bottomBar: UIToolbar!
@@ -44,8 +44,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLayoutSubviews()
         
         //forces the imageView to update its frame, as subview layouting may not be finished at this point
-        self.imageView.superview!.setNeedsLayout()
-        self.imageView.superview!.layoutIfNeeded()
+        imageView.superview!.setNeedsLayout()
+        imageView.superview!.layoutIfNeeded()
         
         setTextFieldConstraints()
     }
@@ -70,7 +70,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.adjustsFontSizeToFitWidth = true
         textField.minimumFontSize = 1
     }
-
+    
     @IBAction func share(_ sender: UIBarButtonItem) {
         let memedImage = generateMemedImage()
         
@@ -79,11 +79,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             shareController.completionWithItemsHandler = {(activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
                 if completed {
                     self.saveMeme()
-                    self.navigationController?.popViewController(animated: true)
                 }
             }
             
-            shareController.popoverPresentationController?.sourceView = self.view
+            shareController.popoverPresentationController?.sourceView = view
             present(shareController, animated: true, completion: nil)
         }
     }
@@ -94,7 +93,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textBottom.text = MemeText.bottomText
         setShareButtonEnabledState()
         
-        self.navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func takePhotoFromCamera(_ sender: UIBarButtonItem) {
@@ -127,11 +126,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             return
         }
         
-        let rect = self.calculateRectOfImageInImageView(imageView: self.imageView)
+        let rect = calculateRectOfImageInImageView(imageView: imageView)
         
         if rect.origin.y != 0.0 {
-            self.textTopTopConstraint.constant = rect.origin.y - 16
-            self.textBottomBottomConstraint.constant = -rect.origin.y + 16
+            textTopTopConstraint.constant = rect.origin.y - 16
+            textBottomBottomConstraint.constant = -rect.origin.y + 16
         }
     }
     
@@ -199,7 +198,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func generateMemedImage() -> UIImage? {
-        self.setConstraints = false
+        setConstraints = false
         //Hide toolbar/navbar for mimed image
         hideBars(true)
         
@@ -208,8 +207,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        self.setConstraints = true
-        self.hideBars(false)
+        setConstraints = true
+        hideBars(false)
         
         return memedImage
     }

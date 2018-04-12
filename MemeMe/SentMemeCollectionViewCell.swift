@@ -8,6 +8,6 @@
 
 import UIKit
 
-class SentMemeCollectionViewCell: UICollectionViewCell {
+final class SentMemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var memeImage: UIImageView!
 }

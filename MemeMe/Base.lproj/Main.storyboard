@@ -102,7 +102,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="02Y-7R-p70">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oTq-0M-Zmd">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="pGV-wp-xcy"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="pGV-wp-xcy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -158,7 +158,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="kxc-bh-CaT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="OaX-eB-sTO">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="dAq-b7-JbT"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="dAq-b7-JbT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -180,7 +180,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1en-af-pGl">
-                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                                 <subviews>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gi1-qw-UmW" userLabel="TopToolbar">
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -199,10 +199,10 @@
                                         </items>
                                     </toolbar>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="fqV-BL-ebP" userLabel="MemeImageView">
-                                        <rect key="frame" x="0.0" y="44" width="768" height="872"/>
+                                        <rect key="frame" x="0.0" y="44" width="768" height="916"/>
                                     </imageView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" horizontalHuggingPriority="150" verticalHuggingPriority="150" translatesAutoresizingMaskIntoConstraints="NO" id="Lfp-Ci-Lgn" userLabel="BottomToolbar">
-                                        <rect key="frame" x="0.0" y="916" width="768" height="44"/>
+                                        <rect key="frame" x="0.0" y="960" width="768" height="44"/>
                                         <items>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="gXb-g6-M7Q"/>
                                             <barButtonItem title="Camera" image="CameraIcon" largeContentSizeImage="Camera" id="L0O-vD-eFC" userLabel="Camera">
@@ -231,7 +231,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ae-3o-7e0">
-                                <rect key="frame" x="368" y="124" width="32" height="17"/>
+                                <rect key="frame" x="368" y="80" width="32" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -352,6 +352,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9CG-pI-rT0"/>
-        <segue reference="pGV-wp-xcy"/>
+        <segue reference="dAq-b7-JbT"/>
     </inferredMetricsTieBreakers>
 </document>

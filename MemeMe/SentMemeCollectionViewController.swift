@@ -10,13 +10,13 @@ import UIKit
 
 private let reuseIdentifier = MemeIds.MEME_COLLECTION_VIEW_CELL_ID
 
-class SentMemeCollectionViewController: UICollectionViewController {
+final class SentMemeCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.collectionView?.reloadData()
+        collectionView?.reloadData()
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -39,7 +39,7 @@ class SentMemeCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: MemeIds.MEME_DETAIL_SEGUE_ID, sender: indexPath.row)
+        performSegue(withIdentifier: MemeIds.MEME_DETAIL_SEGUE_ID, sender: indexPath.row)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,8 +53,7 @@ class SentMemeCollectionViewController: UICollectionViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-    
-        self.setupFlowLayout()
+        setupFlowLayout()
     }
     
     func setupFlowLayout() {

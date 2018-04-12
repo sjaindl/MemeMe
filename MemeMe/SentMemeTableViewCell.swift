@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SentMemeTableViewCell: UITableViewCell {
+final class SentMemeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topTextLabel: UILabel!

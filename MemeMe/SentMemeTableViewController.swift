@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SentMemeTableViewController: UITableViewController {
-    
+final class SentMemeTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,7 +33,7 @@ class SentMemeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: MemeIds.MEME_DETAIL_SEGUE_ID, sender: indexPath.row)
+        performSegue(withIdentifier: MemeIds.MEME_DETAIL_SEGUE_ID, sender: indexPath.row)
     }
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
